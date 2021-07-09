@@ -1,0 +1,19 @@
++ mỗi một tensor có 1 thuộc tính grad_fn trích dẫn đến 1 function đã tạo ra tensor
+
++ bởi vì các tính toán trên tensor sẽ được lưu trữ trên một bộ nhớ đệm vì vậy trước khi thực hiện lan truyền ngược cần phải thực hiện xóa grad trong bộ nhớ đệm sử dụng hàm zero_grad()
+
++ mini-batch và torch.nn luôn nhận vào là như thế và thường gắn kèm batch_size trong shape của một input và torch.nn không chấp nhận một mẫu đơn lẻ
+
++ trong một tập input thì kích thước luôn là n_samples * nchannels * height * width
+
++ nn.Module: thuận tiện gói tham số với sự hỗ trợ để đẩy lên các device như: GPU, export và loading các tham số,....
+
++ hoàn toàn có thể xem tensor đạo hàm được tính toán dựa trên biểu thức đạo hàm ngược từ vị trí của y về x
+
++ mỗi một tensor có một thuộc tính grad_fn nhằm lưu thông tin hàm đã sinh ra được tensor
+
++ requires_grad: lưu thông tin đạo hàm trên mỗi một tensor cụ thể và tính chất xem tensor có cần phải thực hiện đạo hàm hay không? Nếu tensor có thực hiện đạo hàm thì có thể xem xét được
+kết quả tính toán thông qua tensor.grad
+
++ torch.nn luôn chỉ chấp nhận một mini-batches từ mẫu và không chấp nhận mẫu đơn với định dạng: num_samples * num_channels * num_rows * num_columns và
+khi mà chỉ có một mẫu đơn có thể fake nó bằng cách bổ sung một chiều ngẫu nhiên là nn.unsqueeze(0)
